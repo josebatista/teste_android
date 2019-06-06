@@ -12,13 +12,15 @@ import dev.dextra.newsapp.api.model.Article
 import dev.dextra.newsapp.api.model.Source
 import dev.dextra.newsapp.base.BaseListActivity
 import dev.dextra.newsapp.feature.news.adapter.ArticleListAdapter
+import dev.dextra.newsapp.utils.RecyclerViewPagination
 import kotlinx.android.synthetic.main.activity_news.*
 import org.koin.android.ext.android.inject
 
 
 const val NEWS_ACTIVITY_SOURCE = "NEWS_ACTIVITY_SOURCE"
 
-class NewsActivity : BaseListActivity(), ArticleListAdapter.ArticleListAdapterItemClick {
+class NewsActivity : BaseListActivity(), ArticleListAdapter.ArticleListAdapterItemClick,
+    RecyclerViewPagination.RecyclerViewPaginationScrollListener {
 
     override val emptyStateTitle: Int = R.string.empty_state_title_news
     override val emptyStateSubTitle: Int = R.string.empty_state_subtitle_news
@@ -75,6 +77,8 @@ class NewsActivity : BaseListActivity(), ArticleListAdapter.ArticleListAdapterIt
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+        news_list.addOnScrollListener(RecyclerViewPagination(this))
     }
 
     override fun setupPortrait() {
@@ -95,5 +99,9 @@ class NewsActivity : BaseListActivity(), ArticleListAdapter.ArticleListAdapterIt
 
     override fun executeRetry() {
         newsViewModel.loadNews()
+    }
+
+    override fun loadMore(currentPage: Int) {
+        newsViewModel.loadMore(currentPage)
     }
 }
