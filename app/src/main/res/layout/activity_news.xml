@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".feature.news.NewsActivity">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/news_list"
         style="@style/ListStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_article">
-
-    </ListView>
+        tools:listitem="@layout/item_article" />
 
     <include
         layout="@layout/empty_state"
