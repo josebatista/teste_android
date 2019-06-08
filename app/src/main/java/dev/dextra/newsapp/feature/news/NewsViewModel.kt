@@ -31,7 +31,7 @@ class NewsViewModel(
                     if (response.articles.isNotEmpty()) {
                         networkState.postValue(NetworkState.SUCCESS)
                     } else {
-                        networkState.postValue(NetworkState.ERROR)
+                        networkState.postValue(NetworkState.EMPTY)
                     }
                 },
                     {
