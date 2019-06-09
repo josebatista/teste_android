@@ -9,13 +9,13 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.mock.declare
 
-object TestSuite : KoinTest{
+object TestSuite : KoinTest {
 
     var endpointService: MockedEndpointService? = null
         private set
 
-    fun mock(url: String): EndpointMock {
-        var url = url
+    fun mock(mockUrl: String): EndpointMock {
+        var url = mockUrl
         if (!url.startsWith("/") && !url.startsWith("http")) {
             url = "/$url"
         }
@@ -39,7 +39,7 @@ object TestSuite : KoinTest{
     fun init(instrumented: Boolean) {
         GlobalContext.getOrNull() ?: startKoin { modules(appComponent) }
 
-        if(!instrumented) RxTestScheduler.init()
+        if (!instrumented) RxTestScheduler.init()
 
         initMockedEndpointService()
     }
