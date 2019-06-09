@@ -34,7 +34,7 @@ class SourcesActivity : BaseListActivity(), SourcesListAdapter.SourceListAdapter
     override val mainList: View
         get() = sources_list
 
-    val sourcesViewModel: SourcesViewModel by inject()
+    private val sourcesViewModel: SourcesViewModel by inject()
 
     private var viewAdapter: SourcesListAdapter = SourcesListAdapter(this)
     private var viewManager: RecyclerView.LayoutManager = GridLayoutManager(this, 1)
@@ -84,7 +84,7 @@ class SourcesActivity : BaseListActivity(), SourcesListAdapter.SourceListAdapter
         )
         country_select.setAdapter(countryAdapter)
         country_select.keyListener = null
-        country_select.setOnItemClickListener { parent, view, position, id ->
+        country_select.setOnItemClickListener { parent, _, position, _ ->
             val item = parent.getItemAtPosition(position)
             if (item is Country) {
                 sourcesViewModel.changeCountry(item)
@@ -99,7 +99,7 @@ class SourcesActivity : BaseListActivity(), SourcesListAdapter.SourceListAdapter
             )
         )
         category_select.keyListener = null
-        category_select.setOnItemClickListener { parent, view, position, id ->
+        category_select.setOnItemClickListener { parent, _, position, _ ->
             val item = parent.getItemAtPosition(position)
             if (item is Category) {
                 sourcesViewModel.changeCategory(item)

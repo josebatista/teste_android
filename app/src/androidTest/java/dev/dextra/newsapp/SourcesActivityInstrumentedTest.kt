@@ -30,13 +30,24 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.lang.RuntimeException
 
 @RunWith(AndroidJUnit4::class)
 class SourcesActivityInstrumentedTest : BaseInstrumentedTest() {
 
-    val emptyResponse = SourceResponse(ArrayList(), "ok")
-    val brazilResponse = SourceResponse(listOf(Source("cat", "BR", "Test Brazil Description", "1234", "PT", "Test Brazil", "http://www.google.com.br")), "ok")
+    private val emptyResponse = SourceResponse(ArrayList(), "ok")
+    private val brazilResponse = SourceResponse(
+        listOf(
+            Source(
+                "cat",
+                "BR",
+                "Test Brazil Description",
+                "1234",
+                "PT",
+                "Test Brazil",
+                "http://www.google.com.br"
+            )
+        ), "ok"
+    )
 
     @get:Rule
     val activityRule = ActivityTestRule(SourcesActivity::class.java, false, false)
@@ -132,7 +143,7 @@ class SourcesActivityInstrumentedTest : BaseInstrumentedTest() {
             override fun getResponse(request: Request, path: String): String {
                 val jsonData = FileUtils.readJson(path.substring(1) + ".json")!!
                 return request.url().queryParameter("category")?.let {
-                    if(it==Category.BUSINESS.name.toLowerCase()) JsonUtils.toJson(brazilResponse) else jsonData
+                    if (it == Category.BUSINESS.name.toLowerCase()) JsonUtils.toJson(brazilResponse) else jsonData
                 } ?: jsonData
             }
         }).apply()
