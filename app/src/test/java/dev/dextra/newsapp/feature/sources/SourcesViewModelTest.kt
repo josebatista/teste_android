@@ -10,8 +10,8 @@ import dev.dextra.newsapp.base.NetworkState
 import dev.dextra.newsapp.base.TestSuite
 import dev.dextra.newsapp.base.mock.endpoint.ResponseHandler
 import dev.dextra.newsapp.utils.JsonUtils
-import junit.framework.Assert.assertEquals
 import okhttp3.Request
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.koin.test.get
@@ -19,7 +19,7 @@ import org.koin.test.get
 
 class SourcesViewModelTest : BaseTest() {
 
-    val emptyResponse = SourceResponse(ArrayList(), "ok")
+    private val emptyResponse = SourceResponse(ArrayList(), "ok")
 
     lateinit var viewModel: SourcesViewModel
 

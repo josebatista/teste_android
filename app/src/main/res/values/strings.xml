@@ -8,6 +8,8 @@
     <string name="country">Country</string>
     <string name="category">Category</string>
 
+    <string name="image_of_article">Image of articles list item</string>
+
     <string name="empty_state_title_source">No Sources found</string>
     <string name="empty_state_subtitle_source">Couldn\'t find any News Source with the selected filters</string>
 

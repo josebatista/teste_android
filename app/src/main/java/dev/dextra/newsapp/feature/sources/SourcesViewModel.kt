@@ -25,7 +25,7 @@ class SourcesViewModel(private val newsRepository: NewsRepository) : BaseViewMod
             ).subscribe({
                 sources.postValue(it.sources)
                 if (it.sources.isEmpty()) {
-                    networkState.postValue(NetworkState.ERROR)
+                    networkState.postValue(NetworkState.EMPTY)
                 } else {
                     networkState.postValue(NetworkState.SUCCESS)
                 }

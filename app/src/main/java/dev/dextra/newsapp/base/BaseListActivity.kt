@@ -1,7 +1,6 @@
 package dev.dextra.newsapp.base
 
 import android.app.Dialog
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
@@ -48,7 +47,7 @@ abstract class BaseListActivity : AppCompatActivity() {
 
     private var loadingDialog: Dialog? = null
 
-    fun showLoading(context: Context) {
+    private fun showLoading() {
         if (loadingDialog == null) {
             initDialog()
         }
@@ -60,12 +59,12 @@ abstract class BaseListActivity : AppCompatActivity() {
         loadingDialog?.apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCancelable(false)
-            window.setBackgroundDrawableResource(android.R.color.transparent)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
             setContentView(R.layout.dialog_loading)
         }
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         loadingDialog?.dismiss()
     }
 
@@ -86,7 +85,7 @@ abstract class BaseListActivity : AppCompatActivity() {
 
     protected val networkStateObserver = Observer<NetworkState> { networkState ->
         if (NetworkState.RUNNING == networkState) {
-            showLoading(this)
+            showLoading()
         } else {
             hideLoading()
         }
@@ -97,8 +96,8 @@ abstract class BaseListActivity : AppCompatActivity() {
                 show(mainList)
             }
             NetworkState.EMPTY -> {
-                hide(empty_state)
-                show(error_state)
+                show(empty_state)
+                hide(error_state)
                 hide(mainList)
             }
             NetworkState.ERROR -> {
@@ -111,11 +110,11 @@ abstract class BaseListActivity : AppCompatActivity() {
         }
     }
 
-    fun show(view: View) {
+    private fun show(view: View) {
         view.visibility = VISIBLE
     }
 
-    fun hide(view: View) {
+    private fun hide(view: View) {
         view.visibility = GONE
     }
 

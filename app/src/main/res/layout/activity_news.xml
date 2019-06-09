@@ -6,14 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".feature.news.NewsActivity">
 
-    <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/ListStyle"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/news_list"
-            tools:listitem="@layout/item_article">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_list"
+        style="@style/ListStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_article" />
 
-    </ListView>
+    <include
+        layout="@layout/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_safe_distance"
+        tools:visibility="gone" />
+
+    <include
+        layout="@layout/error_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_safe_distance"
+        tools:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
